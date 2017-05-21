@@ -8,5 +8,12 @@
     <artifactId>ppopsoe</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.3.8.v20160314</version>
+        </dependency>
+    </dependencies>
 
 </project>
