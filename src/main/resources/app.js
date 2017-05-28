@@ -28,7 +28,8 @@ function showQuoute(response){
 
 function showFail(correctParty, selectedParty, explanation, currentQuoteId){
     $("#explanation")
-        .text("Te has confundido. No te preocupes, el PP y el PSOE son tan similares que a todos nos pasa de vez en cuando. Has selectionado " + selectedParty + " cuando en realidad esta frase pertenece al " + correctParty + ".         " +  explanation);
+        .text("Te has confundido. No te preocupes, el PP y el PSOE son tan similares que a todos nos pasa de vez en cuando. Has seleccionado " + selectedParty + " cuando en realidad esta frase pertenece al " + correctParty + ".         " +  explanation)
+        .addClass("alert alert-danger");
     showNextButton(currentQuoteId);
     $("#PP").prop('disabled', true);
     $("#PSOE").prop('disabled', true);
@@ -36,17 +37,18 @@ function showFail(correctParty, selectedParty, explanation, currentQuoteId){
 
 function showSuccess(selectedParty, explanation, currentQuoteId){
     $("#explanation")
-        .text("Efectivamente, esta frase pertenece al " + selectedParty + "    .         " +  explanation);
+        .text("Efectivamente, esta frase pertenece al " + selectedParty + "    .         " +  explanation)
+        .addClass("alert alert-success");;
     showNextButton(currentQuoteId);
     $("#PP").prop('disabled', true);
     $("#PSOE").prop('disabled', true);
 }
 
 function showNextButton(currentQuoteId){
-    var nextButton = $("<button id='next' type='button'>Siguiente</button>");
+    var nextButton = $("<button id='next' type='button' class='btn btn-primary btn-lg'>Siguiente</button>");
     nextButton.click( function(){
-        var nextQuoteId = parseInt(currentQuoteId) + 1;
         cleanup();
+        var nextQuoteId = parseInt(currentQuoteId) + 1;
         loadQuote(nextQuoteId, showQuoute);
     });
     $("#next")
@@ -60,7 +62,10 @@ function loadQuote(number, response){
 function cleanup(){
     $("#sentence").text("Cargando la siguiente frase...");
     $("#explanation").text("");
+    $("#explanation").removeClass("alert alert-danger alert-success");
+    $("#PP").unbind('click');
     $("#PP").prop('disabled', true);
+    $("#PSOE").unbind('click');
     $("#PSOE").prop('disabled', true);
     $("#next")
             .html("");

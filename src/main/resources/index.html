@@ -2,21 +2,34 @@
 
 <head>
     <title>Quien lo dijo?</title>
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <link href="bootstrap.min.css" media="screen" rel="stylesheet" type="text/css"/>
+
     <script src="jquery.js" type="text/javascript"></script>
+    <script src="bootstrap.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
 </head>
 <body>
 
-    <h1 id="sentence">La frase esta cargando</h1>
+<div class="container">
 
-    <button id="PP" type="button">PP</button>
-    o
-    <button id="PSOE" type="button">PSOE</button>
+    <div class="header clearfix">
+        <h3 class="text-muted">&iquest;PP o PSOE?</h3>
+    </div>
 
-    <p id="explanation"></p>
+    <div class="jumbotron">
+        <h1 id="sentence" class="text-center">La frase esta cargando</h1>
+        <div class="row text-center">
+            <button id="PP" type="button" class="btn btn-primary btn-lg col-xs-6">PP</button>
+            <button id="PSOE" type="button" class="btn btn-danger btn-lg col-xs-6">PSOE</button>
+        </div>
+        <p id="explanation"></p>
+        <div id="next"></div>
+    </div>
 
-    <div id="next"></div>
-
+</div>
 </body>
 
 </html>
