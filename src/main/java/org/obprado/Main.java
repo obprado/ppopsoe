@@ -35,15 +35,28 @@ public class Main {
     private static class NextQuoteHttpServlet extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            response.getWriter().write(String.format(
-                    "{\n" +
-                            "  \"id\": %s,\n" +
-                            "  \"sentence\": \"Espana es el mejor pais para hacerse rico\",\n" +
-                            "  \"party\": \"PSOE\",\n" +
-                            "  \"explanation\": \"Carlos Solchaga Catalán (Tafalla, 28 de mayo de 1944) es un economista, político español y exdirigente del Partido Socialista de Navarra y del Partido Socialista Obrero Español. Fue ministro de Economía de España.\"\n" +
-                            "}",
-                    //TODO extract all fields from a file/database instead of hardcoding them
-                    new Util().extractId(request.getRequestURI())));
+            String requestedId = new Util().extractId(request.getRequestURI());
+            if (requestedId.equals("1")) {
+                response.getWriter().write(String.format(
+                        "{\n" +
+                                "  \"id\": %s,\n" +
+                                "  \"sentence\": \"Espana es el mejor pais para hacerse rico\",\n" +
+                                "  \"party\": \"PSOE\",\n" +
+                                "  \"explanation\": \"Carlos Solchaga Catalán (Tafalla, 28 de mayo de 1944) es un economista, político español y exdirigente del Partido Socialista de Navarra y del Partido Socialista Obrero Español. Fue ministro de Economía de España.\"\n" +
+                                "}",
+                        //TODO extract all fields from a file/database instead of hardcoding them
+                        requestedId));
+            } else {
+                response.getWriter().write(String.format(
+                        "{\n" +
+                                "  \"id\": %s,\n" +
+                                "  \"sentence\": \"Somos el partido de los trabajadores\",\n" +
+                                "  \"party\": \"PP\",\n" +
+                                "  \"explanation\": \"La frase la dijo Maria dolores del Cospedal: https://www.youtube.com/watch?v=CXryfUJh7qg\"\n" +
+                                "}",
+                        //TODO extract all fields from a file/database instead of hardcoding them
+                        requestedId));
+            }
         }
 
     }
